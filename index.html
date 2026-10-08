@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8fa">
+  <meta name="description" content="Listen to Moroccan radio stations in one simple, lightweight web player.">
+  <title>Radio Maroc — Moroccan Radio Directory</title>
+  <link rel="icon" href="assets/radio.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Radio Maroc home">
+      <span class="brand-mark" aria-hidden="true"><img src="assets/radio.svg" alt=""></span>
+      <span>radio<span class="brand-accent">.maroc</span></span>
+    </a>
+    <div class="header-actions">
+      <span class="live-dot" aria-hidden="true"></span><span class="live-label">Moroccan radio</span>
+      <button id="theme-toggle" class="icon-button" type="button" aria-label="Switch color theme" title="Switch theme">☾</button>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">YOUR SOUND. YOUR MOROCCO.</p>
+        <h1>Radio, all in <span>one place.</span></h1>
+        <p class="hero-subtitle">Discover Moroccan stations, find your favorites, and listen right here.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="sound-ring ring-one"></div><div class="sound-ring ring-two"></div>
+        <div class="hero-radio"><span>♫</span></div>
+      </div>
+    </section>
+
+    <section class="player-panel" aria-label="Audio player">
+      <div class="now-playing">
+        <div id="now-logo" class="station-logo now-logo"><span>♫</span></div>
+        <div class="now-copy">
+          <p class="small-label">NOW PLAYING</p>
+          <h2 id="now-name">Choose a station</h2>
+          <p id="now-meta" class="muted">Your next favorite is waiting.</p>
+        </div>
+      </div>
+      <div class="player-controls">
+        <button id="play-toggle" class="play-button" type="button" aria-label="Play or pause" disabled>▶</button>
+        <div class="volume-control">
+          <span aria-hidden="true">🔈</span>
+          <input id="volume" type="range" min="0" max="1" step="0.05" value="0.8" aria-label="Volume">
+        </div>
+      </div>
+      <p id="player-status" class="player-status" role="status">Select a station to start listening.</p>
+      <audio id="audio" preload="none"></audio>
+    </section>
+
+    <section class="directory-section">
+      <div class="section-heading">
+        <div><p class="eyebrow">THE DIRECTORY</p><h2>Find your frequency</h2></div>
+        <button id="refresh-button" class="secondary-button" type="button">↻ <span>Refresh stations</span></button>
+      </div>
+
+      <div class="toolbar">
+        <label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search stations…" autocomplete="off" aria-label="Search stations"></label>
+        <label class="select-wrap"><span class="sr-only">Language</span>
+          <select id="language-filter"><option value="">All languages</option></select>
+        </label>
+        <label class="select-wrap"><span class="sr-only">Station category</span>
+          <select id="category-filter">
+            <option value="">All categories</option>
+            <option value="music">Music</option><option value="news">News & talk</option>
+            <option value="sports">Sports</option><option value="religious">Religious</option>
+            <option value="regional">Regional</option>
+          </select>
+        </label>
+      </div>
+
+      <nav class="tabs" aria-label="Station views">
+        <button class="tab active" type="button" data-view="all">All stations <span id="all-count" class="count">—</span></button>
+        <button class="tab" type="button" data-view="favorites">♥ Favorites <span id="favorites-count" class="count">0</span></button>
+        <button class="tab" type="button" data-view="recent">Recently played</button>
+      </nav>
+
+      <div id="directory-status" class="directory-status" role="status">Loading Moroccan stations…</div>
+      <div id="station-grid" class="station-grid" aria-live="polite"></div>
+      <div id="empty-state" class="empty-state" hidden>
+        <div class="empty-icon">⌕</div><h3>No stations found</h3><p>Try another search or clear your filters.</p>
+        <button id="clear-filters" class="secondary-button" type="button">Clear filters</button>
+      </div>
+      <div class="directory-footer"><span id="updated-at">Directory updates from Radio Browser</span><span>Station data and streams may change.</span></div>
+    </section>
+
+    <section class="notice">
+      <span class="notice-icon">ⓘ</span>
+      <p><strong>About the streams</strong><br>Station listings and stream links are provided by Radio Browser. Stations are independently operated; availability, logos, and playback may vary by station, region, or browser.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a class="brand footer-brand" href="./"><span class="brand-mark"><img src="assets/radio.svg" alt=""></span><span>radio<span class="brand-accent">.maroc</span></span></a>
+    <p>Made for listeners in Morocco. <a href="https://www.radio-browser.info/" target="_blank" rel="noopener noreferrer">Station data by Radio Browser</a>.</p>
+  </footer>
+</body>
+</html>
